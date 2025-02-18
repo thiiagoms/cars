@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Sedan",
+    "description": "A passenger car with a three-box configuration (engine, passenger, and cargo)."
+  },
+  {
+    "name": "SUV",
+    "description": "Sport Utility Vehicle designed for higher ground clearance and off-road capability."
+  },
+  {
+    "name": "Coupe",
+    "description": "A stylish car typically with two doors and a fixed roof."
+  },
+  {
+    "name": "Convertible",
+    "description": "A car with a retractable roof that can be lowered or removed."
+  },
+  {
+    "name": "Hatchback",
+    "description": "A compact car with a rear door that swings upward to provide cargo access."
+  },
+  {
+    "name": "Wagon",
+    "description": "A vehicle with an extended rear cargo area and a roofline similar to sedans."
+  },
+  {
+    "name": "Minivan",
+    "description": "A family-friendly vehicle designed for passenger comfort and cargo space."
+  },
+  {
+    "name": "Pickup Truck",
+    "description": "A light-duty truck featuring an enclosed cab and an open cargo bed."
+  }
+]
