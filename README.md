@@ -20,73 +20,63 @@ composer require sherifsheremetaj/cars
 ---
 
 ## 🚀 **Usage**
-### **1️⃣ Retrieve Manufacturers in JSON**
+### **1️⃣ Retrieve Manufacturers**
 ```php
 use SherifSheremetaj\Cars\Manufactures;
 use SherifSheremetaj\Cars\DataType;
 
+#JSON data
 $manufactures = new Manufactures();
 $data = $manufactures->getManufactures(DataType::JSON);
 
-echo $data; // Returns JSON string
-```
+echo $data;
 
----
-
-### **2️⃣ Retrieve Manufacturers in CSV**
-```php
+#CSV data
+$manufactures = new Manufactures();
 $data = $manufactures->getManufactures(DataType::CSV);
 
 echo $data;
-/*
-Expected Output:
-id,name
-1,Toyota
-2,Ford
-*/
-```
 
----
-
-### **3️⃣ Retrieve Manufacturers in XML**
-```php
+#XML data
+$manufactures = new Manufactures();
 $data = $manufactures->getManufactures(DataType::XML);
 
 echo $data;
-/*
-Expected Output:
-<manufacturers>
-    <manufacturer>
-        <id>1</id>
-        <name>Toyota</name>
-    </manufacturer>
-    <manufacturer>
-        <id>2</id>
-        <name>Ford</name>
-    </manufacturer>
-</manufacturers>
-*/
 ```
 
 ---
 
-## ⚙ **Methods**
-| Method | Description |
-|--------|-------------|
-| `getManufactures(string $type)` | Retrieves manufacturers' data in **JSON, CSV, or XML** formats. |
-| `loadManufacturesJson()` | Loads manufacturers from a JSON file. |
-| `loadManufacturesCsv()` | Converts JSON data into CSV format. |
-| `loadManufacturesXml()` | Converts JSON data into XML format. |
+### **1️⃣ Retrieve CarTypes**
+```php
+use SherifSheremetaj\Cars\CarTypes;
+use SherifSheremetaj\Cars\DataType;
+
+#JSON data
+$carTypes = new CarTypes();
+$data = $carTypes->getTypes(DataType::JSON);
+
+echo $data;
+
+#CSV data
+$carTypes = new CarTypes();
+$data = $carTypes->getTypes(DataType::CSV);
+
+echo $data;
+
+#XML data
+$carTypes = new CarTypes();
+$data = $carTypes->getTypes(DataType::XML);
+
+echo $data;
+```
 
 ---
 
 ## 🛠 **Configuration**
 By default, data is loaded from:
 ```php
-__DIR__ . '/data/manufactures.json';
+__DIR__ . '/data/....';
 ```
-You can modify `datasetPath()` to use a **custom data source**.
-
 ---
 
 ## ✅ **Running Tests**
