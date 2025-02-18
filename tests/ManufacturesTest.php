@@ -6,6 +6,9 @@ use SherifSheremetaj\Cars\DataType;
 
 class ManufacturesTest extends TestCase
 {
+    /**
+     * @throws Exception
+     */
     public function test_get_manufactures_throws_exception_for_invalid_type(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -15,6 +18,9 @@ class ManufacturesTest extends TestCase
         $manufactures->getManufactures("jpg");
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_get_manufactures_returns_json_data(): void
     {
         $manufactures = $this->getMockBuilder(Manufactures::class)
@@ -30,6 +36,9 @@ class ManufacturesTest extends TestCase
         $this->assertSame($expectedJson, $result);
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_get_manufactures_returns_csv_data(): void
     {
         $manufactures = $this->getMockBuilder(Manufactures::class)
@@ -45,6 +54,9 @@ class ManufacturesTest extends TestCase
         $this->assertSame($expectedCsv, $result);
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_get_manufactures_throws_exception_for_unhandled_type(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -159,6 +171,9 @@ class ManufacturesTest extends TestCase
         $this->assertSame('', $csvOutput);
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_get_manufactures_returns_xml_data(): void
     {
         $manufactures = $this->getMockBuilder(Manufactures::class)
@@ -186,6 +201,9 @@ XML;
         $this->assertSame($expectedXml, $result);
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_load_manufactures_xml_returns_valid_xml(): void
     {
         $manufactures = $this->getMockBuilder(Manufactures::class)
@@ -193,8 +211,8 @@ XML;
             ->getMock();
 
         $jsonData = json_encode([
-            ['id' => 1, 'name' => 'Toyota'],
-            ['id' => 2, 'name' => 'Ford'],
+            ["name" => "Toyota", "country" => "Japan", "logo" => "/logos/toyota.png"],
+            ["name" => "Ford", "country" => "USA", "logo" => "/logos/ford.png"],
         ]);
 
         $tempJsonFile = tempnam(sys_get_temp_dir(), 'json');
@@ -210,12 +228,14 @@ XML;
 <?xml version="1.0"?>
 <manufacturers>
     <manufacturer>
-        <id>1</id>
         <name>Toyota</name>
+        <country>Japan</country>
+        <logo>/logos/toyota.png</logo>
     </manufacturer>
     <manufacturer>
-        <id>2</id>
         <name>Ford</name>
+        <country>USA</country>
+        <logo>/logos/ford.png</logo>
     </manufacturer>
 </manufacturers>
 XML;
@@ -223,6 +243,9 @@ XML;
         $this->assertXmlStringEqualsXmlString($expectedXml, $xmlOutput);
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_load_manufactures_xml_returns_empty_string_when_file_not_found(): void
     {
         $manufactures = $this->getMockBuilder(Manufactures::class)
@@ -236,6 +259,9 @@ XML;
         $this->assertSame('', $xmlOutput);
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_load_manufactures_xml_returns_empty_string_for_invalid_json(): void
     {
         $manufactures = $this->getMockBuilder(Manufactures::class)
@@ -254,6 +280,9 @@ XML;
         $this->assertSame('', $xmlOutput);
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_load_manufactures_xml_returns_empty_string_for_empty_json_array(): void
     {
         $manufactures = $this->getMockBuilder(Manufactures::class)
