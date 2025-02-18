@@ -1,4 +1,4 @@
-# 🚗 Manufactures Package
+# 🚗 Car Manufactures Package
 
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/sherifsheremetaj/cars)
 ![GitHub License](https://img.shields.io/github/license/sherifsheremetaj/cars)
