@@ -98,6 +98,9 @@ vendor/bin/phpunit
 
 ---
 
+## 🔍 Data Source**
+Logo images are crawled from Carlogos.org and processed for optimal usage.
+
 ## 📝 **Contributing**
 Pull requests are welcome!  
 To contribute:
