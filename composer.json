@@ -1,0 +1,31 @@
+{
+    "name": "sherifsheremetaj/cars",
+    "description": "Cars information package",
+    "type": "library",
+    "require": {
+        "illuminate/support": "^11.43"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SherifSheremetaj\\Cars\\": "src/",
+            "SherifSheremetaj\\Cars\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sherif Sheremetaj",
+            "email": "sherif.sheremetaj@hotmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "orchestra/testbench": "^9.10",
+        "phpunit/phpunit": "^11.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
