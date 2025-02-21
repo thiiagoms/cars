@@ -6,31 +6,31 @@ use RuntimeException;
 use SherifSheremetaj\Cars\helpers\CSVHelper;
 use SherifSheremetaj\Cars\helpers\XMLHelper;
 
-class CarTypes
+class FuelTypes
 {
     public function datasetPath(): string
     {
-        return __DIR__ . '/data/car_types.json';
+        return __DIR__ . '/data/fuel_types.json';
     }
 
     /**
      * @throws Exception
      */
-    public function getTypes(string $type = DataTypes::JSON): array|string
+    public function getFuelTypes(string $type = DataTypes::JSON): array|string
     {
         if (!in_array($type, DataTypes::ALL, true)) {
             throw new InvalidArgumentException("Invalid type provided: $type");
         }
 
         return match ($type) {
-            DataTypes::JSON => $this->loadTypesJson(),
-            DataTypes::CSV  => $this->loadTypesCsv(),
-            DataTypes::XML  => $this->loadTypesXml(),
-            default        => throw new RuntimeException("Unhandled type: $type"),
+            DataTypes::JSON => $this->loadFuelTypesJson(),
+            DataTypes::CSV => $this->loadFuelTypesCsv(),
+            DataTypes::XML => $this->loadFuelTypesXml(),
+            default => throw new RuntimeException("Unhandled type: $type"),
         };
     }
 
-    public function loadTypesJson(): array|string
+    public function loadFuelTypesJson(): array|string
     {
         $jsonPath = $this->datasetPath();
         $jsonData = file_get_contents($jsonPath);
@@ -42,7 +42,7 @@ class CarTypes
         return $jsonData;
     }
 
-    public function loadTypesCsv(): string
+    public function loadFuelTypesCsv(): string
     {
         return CSVHelper::readAsCSV($this->datasetPath());
     }
@@ -50,8 +50,8 @@ class CarTypes
     /**
      * @throws Exception
      */
-    public function loadTypesXml(): string
+    public function loadFuelTypesXml(): string
     {
-        return XMLHelper::readAsXML($this->datasetPath(), 'carTypes', 'carType');
+        return XMLHelper::readAsXML($this->datasetPath(), 'fuelTypes', 'fuelType');
     }
 }

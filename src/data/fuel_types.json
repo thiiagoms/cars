@@ -1,0 +1,42 @@
+[
+  {
+    "type": "Gasoline",
+    "description": "A commonly used fuel in internal combustion engines, derived from crude oil.",
+    "abbreviation": "Petrol"
+  },
+  {
+    "type": "Diesel",
+    "description": "A type of fuel made from crude oil, primarily used in diesel engines.",
+    "abbreviation": "Diesel"
+  },
+  {
+    "type": "Electric",
+    "description": "A fuel source that uses electricity stored in batteries to power the vehicle's electric motor.",
+    "abbreviation": "EV"
+  },
+  {
+    "type": "Hybrid",
+    "description": "A combination of an internal combustion engine and an electric motor, which uses both petrol or diesel and electricity.",
+    "abbreviation": "HEV"
+  },
+  {
+    "type": "Plug-in Hybrid",
+    "description": "A type of hybrid car that can be charged through an external power source and run on electric power alone for limited distances.",
+    "abbreviation": "PHEV"
+  },
+  {
+    "type": "CNG",
+    "description": "Compressed natural gas, an alternative fuel used in vehicles with specially designed engines.",
+    "abbreviation": "CNG"
+  },
+  {
+    "type": "LPG",
+    "description": "Liquefied petroleum gas, a clean-burning alternative to petrol or diesel for vehicles.",
+    "abbreviation": "LPG"
+  },
+  {
+    "type": "Hydrogen",
+    "description": "A fuel that powers vehicles through hydrogen fuel cells, producing only water vapor as a byproduct.",
+    "abbreviation": "H2"
+  }
+]
