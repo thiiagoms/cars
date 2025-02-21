@@ -21,25 +21,26 @@ composer require sherifsheremetaj/cars
 
 ## 🚀 **Usage**
 ### **1️⃣ Retrieve Manufacturers**
+
 ```php
 use SherifSheremetaj\Cars\Manufactures;
-use SherifSheremetaj\Cars\DataType;
+use SherifSheremetaj\Cars\DataTypes;
 
 #JSON data
 $manufactures = new Manufactures();
-$data = $manufactures->getManufactures(DataType::JSON);
+$data = $manufactures->getManufactures(DataTypes::JSON);
 
 echo $data;
 
 #CSV data
 $manufactures = new Manufactures();
-$data = $manufactures->getManufactures(DataType::CSV);
+$data = $manufactures->getManufactures(DataTypes::CSV);
 
 echo $data;
 
 #XML data
 $manufactures = new Manufactures();
-$data = $manufactures->getManufactures(DataType::XML);
+$data = $manufactures->getManufactures(DataTypes::XML);
 
 echo $data;
 ```
@@ -47,25 +48,26 @@ echo $data;
 ---
 
 ### **1️⃣ Retrieve CarTypes**
+
 ```php
 use SherifSheremetaj\Cars\CarTypes;
-use SherifSheremetaj\Cars\DataType;
+use SherifSheremetaj\Cars\DataTypes;
 
 #JSON data
 $carTypes = new CarTypes();
-$data = $carTypes->getTypes(DataType::JSON);
+$data = $carTypes->getTypes(DataTypes::JSON);
 
 echo $data;
 
 #CSV data
 $carTypes = new CarTypes();
-$data = $carTypes->getTypes(DataType::CSV);
+$data = $carTypes->getTypes(DataTypes::CSV);
 
 echo $data;
 
 #XML data
 $carTypes = new CarTypes();
-$data = $carTypes->getTypes(DataType::XML);
+$data = $carTypes->getTypes(DataTypes::XML);
 
 echo $data;
 ```

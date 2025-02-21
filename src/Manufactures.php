@@ -16,16 +16,16 @@ class Manufactures
     /**
      * @throws Exception
      */
-    public function getManufactures(string $type = DataType::JSON): array|string
+    public function getManufactures(string $type = DataTypes::JSON): array|string
     {
-        if (!in_array($type, DataType::ALL, true)) {
+        if (!in_array($type, DataTypes::ALL, true)) {
             throw new InvalidArgumentException("Invalid type provided: $type");
         }
 
         return match ($type) {
-            DataType::JSON => $this->loadManufacturesJson(),
-            DataType::CSV => $this->loadManufacturesCsv(),
-            DataType::XML => $this->loadManufacturesXml(),
+            DataTypes::JSON => $this->loadManufacturesJson(),
+            DataTypes::CSV => $this->loadManufacturesCsv(),
+            DataTypes::XML => $this->loadManufacturesXml(),
             default => throw new RuntimeException("Unhandled type: $type"),
         };
     }

@@ -3,7 +3,8 @@
     "description": "Cars information package",
     "type": "library",
     "require": {
-        "illuminate/support": "^11.43"
+        "illuminate/support": "^11.43",
+      "ext-simplexml": "*"
     },
     "license": "MIT",
     "autoload": {

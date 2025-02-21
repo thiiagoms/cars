@@ -1,10 +1,14 @@
-<?php
+<?php namespace SherifSheremetaj\Cars\Tests;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use SherifSheremetaj\Cars\CarTypes;
 
 class CarTypesTest extends TestCase
 {
+    /**
+     * @throws Exception
+     */
     public function test_get_types_returns_json_data(): void
     {
         $carTypes = $this->getMockBuilder(CarTypes::class)
@@ -26,6 +30,9 @@ class CarTypesTest extends TestCase
         $this->assertSame($expectedJson, $result);
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_get_types_returns_empty_array_when_file_not_found(): void
     {
         $carTypes = $this->getMockBuilder(CarTypes::class)

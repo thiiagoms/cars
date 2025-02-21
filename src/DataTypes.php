@@ -1,6 +1,6 @@
 <?php namespace SherifSheremetaj\Cars;
 
-class DataType
+class DataTypes
 {
     public const string JSON = "json";
     public const string CSV= "csv";

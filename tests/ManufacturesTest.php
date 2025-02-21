@@ -1,8 +1,10 @@
-<?php
+<?php namespace SherifSheremetaj\Cars\Tests;
 
+use Exception;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SherifSheremetaj\Cars\Manufactures;
-use SherifSheremetaj\Cars\DataType;
+use SherifSheremetaj\Cars\DataTypes;
 
 class ManufacturesTest extends TestCase
 {
@@ -49,7 +51,7 @@ class ManufacturesTest extends TestCase
 
         $manufactures->method('loadManufacturesCsv')->willReturn($expectedCsv);
 
-        $result = $manufactures->getManufactures(DataType::CSV);
+        $result = $manufactures->getManufactures(DataTypes::CSV);
 
         $this->assertSame($expectedCsv, $result);
     }
@@ -196,7 +198,7 @@ XML;
 
         $manufactures->method('loadManufacturesXml')->willReturn($expectedXml);
 
-        $result = $manufactures->getManufactures(DataType::XML);
+        $result = $manufactures->getManufactures(DataTypes::XML);
 
         $this->assertSame($expectedXml, $result);
     }
