@@ -22,11 +22,15 @@
     "minimum-stability": "stable",
     "require-dev": {
         "orchestra/testbench": "^9.10",
-        "phpunit/phpunit": "^11.5"
+        "phpunit/phpunit": "^11.5",
+        "laravel/pint": "^1.21"
     },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
+    },
+    "scripts": {
+        "pint": "pint"
     }
 }

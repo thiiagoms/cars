@@ -25,8 +25,8 @@ composer require sherifsheremetaj/cars
 ### **1️⃣ Retrieve Manufacturers**
 
 ```php
+use SherifSheremetaj\Cars\Enums\DataTypes;
 use SherifSheremetaj\Cars\Manufactures;
-use SherifSheremetaj\Cars\DataTypes;
 
 #JSON data
 $manufactures = new Manufactures();
@@ -53,7 +53,7 @@ echo $data;
 
 ```php
 use SherifSheremetaj\Cars\CarTypes;
-use SherifSheremetaj\Cars\DataTypes;
+use SherifSheremetaj\Cars\Enums\DataTypes;
 
 #JSON data
 $carTypes = new CarTypes();
@@ -81,7 +81,7 @@ echo $data;
 By default, data is loaded from:
 
 ```php
-__DIR__ . '/data/....';
+__DIR__ . '/resources/data/....';
 ```
 
 ---
@@ -95,9 +95,14 @@ composer install
 vendor/bin/phpunit
 ```
 
+To run lint (Laravel pint),  use
+```sh
+composer pint
+```
+
 ---
 
-## 🔍 Data Source**
+## 🔍 **Data Source**
 
 Logo images are crawled from Carlogos.org and processed for optimal usage.
 
