@@ -11,7 +11,7 @@ class Manufactures
 {
     private function datasetPath(): string
     {
-        return __DIR__.'/../resources/data/manufactures.json';
+        return __DIR__ . '/data/manufactures.json';
     }
 
     public function getManufactures(DataTypes $dataTypes): array|string

@@ -11,7 +11,7 @@ class CarTypes
 {
     private function datasetPath(): string
     {
-        return __DIR__.'/../resources/data/car_types.json';
+        return __DIR__ . '/data/car_types.json';
     }
 
     public function getTypes(DataTypes $dataTypes): array|string

@@ -32,19 +32,19 @@ use SherifSheremetaj\Cars\Manufactures;
 $manufactures = new Manufactures();
 $data = $manufactures->getManufactures(DataTypes::JSON);
 
-echo $data;
+echo $data . PHP_EOL;
 
 #CSV data
 $manufactures = new Manufactures();
 $data = $manufactures->getManufactures(DataTypes::CSV);
 
-echo $data;
+echo $data . PHP_EOL;
 
 #XML data
 $manufactures = new Manufactures();
 $data = $manufactures->getManufactures(DataTypes::XML);
 
-echo $data;
+echo $data . PHP_EOL;
 ```
 
 ---
@@ -81,7 +81,7 @@ echo $data;
 By default, data is loaded from:
 
 ```php
-__DIR__ . '/resources/data/....';
+__DIR__ . '/data/....';
 ```
 
 ---
@@ -96,6 +96,7 @@ vendor/bin/phpunit
 ```
 
 To run lint (Laravel pint),  use
+
 ```sh
 composer pint
 ```
