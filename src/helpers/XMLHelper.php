@@ -1,4 +1,6 @@
-<?php namespace SherifSheremetaj\Cars\helpers;
+<?php
+
+namespace SherifSheremetaj\Cars\helpers;
 
 use Exception;
 use SimpleXMLElement;
@@ -10,7 +12,7 @@ class XMLHelper
      */
     public static function readAsXML(string $path, string $listKey, string $key): bool|string
     {
-        if (!file_exists($path) || !is_readable($path)) {
+        if (! file_exists($path) || ! is_readable($path)) {
             return false; // Return false if the file is missing or not readable
         }
 
@@ -22,7 +24,7 @@ class XMLHelper
 
         $data = json_decode($jsonData, true);
 
-        if (!is_array($data) || empty($data)) {
+        if (! is_array($data) || empty($data)) {
             return false; // Return false for invalid data
         }
 
@@ -30,16 +32,17 @@ class XMLHelper
         $xml = new SimpleXMLElement("<$listKey></$listKey>");
 
         foreach ($data as $item) {
-            if (!is_array($item)) {
+            if (! is_array($item)) {
                 continue; // Skip invalid data
             }
 
             $elem = $xml->addChild($key);
 
             foreach ($item as $subKey => $value) {
-                $elem->addChild($subKey, htmlspecialchars((string)$value));
+                $elem->addChild($subKey, htmlspecialchars((string) $value));
             }
         }
+
         return $xml->asXML();
     }
 }
