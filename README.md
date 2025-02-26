@@ -5,12 +5,13 @@
 ![GitHub Stars](https://img.shields.io/github/stars/sherifsheremetaj/cars?style=social)
 ![GitHub Issues](https://img.shields.io/github/issues/sherifsheremetaj/cars)
 
-A simple PHP package for managing **car manufacturers' data** in multiple formats (**JSON, CSV, XML**).  
+A simple PHP package for managing **car manufacturers' data** in multiple formats (**JSON, CSV, XML**).
 Supports **data retrieval, conversion, and validation** with robust error handling.
 
 ---
 
 ## 📦 **Installation**
+
 Install the package via Composer:
 
 ```sh
@@ -20,29 +21,30 @@ composer require sherifsheremetaj/cars
 ---
 
 ## 🚀 **Usage**
+
 ### **1️⃣ Retrieve Manufacturers**
 
 ```php
+use SherifSheremetaj\Cars\Enums\DataTypes;
 use SherifSheremetaj\Cars\Manufactures;
-use SherifSheremetaj\Cars\DataTypes;
 
 #JSON data
 $manufactures = new Manufactures();
 $data = $manufactures->getManufactures(DataTypes::JSON);
 
-echo $data;
+echo $data . PHP_EOL;
 
 #CSV data
 $manufactures = new Manufactures();
 $data = $manufactures->getManufactures(DataTypes::CSV);
 
-echo $data;
+echo $data . PHP_EOL;
 
 #XML data
 $manufactures = new Manufactures();
 $data = $manufactures->getManufactures(DataTypes::XML);
 
-echo $data;
+echo $data . PHP_EOL;
 ```
 
 ---
@@ -51,7 +53,7 @@ echo $data;
 
 ```php
 use SherifSheremetaj\Cars\CarTypes;
-use SherifSheremetaj\Cars\DataTypes;
+use SherifSheremetaj\Cars\Enums\DataTypes;
 
 #JSON data
 $carTypes = new CarTypes();
@@ -75,27 +77,41 @@ echo $data;
 ---
 
 ## 🛠 **Configuration**
+
 By default, data is loaded from:
+
 ```php
 __DIR__ . '/data/....';
 ```
+
 ---
 
 ## ✅ **Running Tests**
+
 To run the PHPUnit test suite, use:
+
 ```sh
 composer install
 vendor/bin/phpunit
 ```
 
+To run lint (Laravel pint),  use
+
+```sh
+composer pint
+```
+
 ---
 
-## 🔍 Data Source**
+## 🔍 **Data Source**
+
 Logo images are crawled from Carlogos.org and processed for optimal usage.
 
 ## 📝 **Contributing**
-Pull requests are welcome!  
+
+Pull requests are welcome!
 To contribute:
+
 1. Fork the repository.
 2. Create a new feature branch (`git checkout -b feature-name`).
 3. Commit your changes (`git commit -m "Added feature X"`).
@@ -105,12 +121,14 @@ To contribute:
 ---
 
 ## 📜 **License**
+
 This package is licensed under the [MIT License](LICENSE).
 
 ---
 
 ## ⭐ **Support & Feedback**
-If you find this package helpful, please **⭐ star the repository**!  
+
+If you find this package helpful, please **⭐ star the repository**!
 For suggestions or issues, open an [issue](https://github.com/sherifsheremetaj/cars/issues).
 
 ---

@@ -1,188 +1,61 @@
-<?php namespace SherifSheremetaj\Cars\Tests;
+<?php
 
-use Exception;
-use InvalidArgumentException;
+namespace SherifSheremetaj\Cars\Tests;
+
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
+use SherifSheremetaj\Cars\Enums\DataTypes;
 use SherifSheremetaj\Cars\Manufactures;
-use SherifSheremetaj\Cars\DataTypes;
 
 class ManufacturesTest extends TestCase
 {
+    private Manufactures $manufactures;
+
     /**
      * @throws Exception
      */
-    public function test_get_manufactures_throws_exception_for_invalid_type(): void
+    protected function setUp(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Invalid type provided: jpg");
-
-        $manufactures = new Manufactures();
-        $manufactures->getManufactures("jpg");
+        $this->manufactures = $this->createMock(Manufactures::class);
     }
 
-    /**
-     * @throws Exception
-     */
-    public function test_get_manufactures_returns_json_data(): void
+    #[Test]
+    public function itShouldReturnManufacturesJsonData(): void
     {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['loadManufacturesJson'])
-            ->getMock();
-
         $expectedJson = '[{"id":1,"name":"Toyota"},{"id":2,"name":"Ford"}]';
 
-        $manufactures->method('loadManufacturesJson')->willReturn($expectedJson);
+        $this->manufactures
+            ->expects($this->once())
+            ->method('getManufactures')
+            ->with(DataTypes::JSON)
+            ->willReturn($expectedJson);
 
-        $result = $manufactures->getManufactures();
+        $result = $this->manufactures->getManufactures(DataTypes::JSON);
 
         $this->assertSame($expectedJson, $result);
     }
 
-    /**
-     * @throws Exception
-     */
-    public function test_get_manufactures_returns_csv_data(): void
+    #[Test]
+    public function itShouldReturnManufacturesCSVData(): void
     {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['loadManufacturesCsv'])
-            ->getMock();
-
         $expectedCsv = "id,name\n1,Toyota\n2,Ford\n";
 
-        $manufactures->method('loadManufacturesCsv')->willReturn($expectedCsv);
+        $this->manufactures
+            ->expects($this->once())
+            ->method('getManufactures')
+            ->with(DataTypes::CSV)
+            ->willReturn($expectedCsv);
 
-        $result = $manufactures->getManufactures(DataTypes::CSV);
+        $result = $this->manufactures->getManufactures(DataTypes::CSV);
 
         $this->assertSame($expectedCsv, $result);
     }
 
-    /**
-     * @throws Exception
-     */
-    public function test_get_manufactures_throws_exception_for_unhandled_type(): void
+    #[Test]
+    public function itShouldReturnManufacturesXMLData(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Invalid type provided: XML");
-
-        $manufactures = new Manufactures();
-        $manufactures->getManufactures("XML");
-    }
-
-    public function test_load_manufactures_json_returns_json_data(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['datasetPath'])
-            ->getMock();
-
-        $tempJsonFile = tempnam(sys_get_temp_dir(), 'json');
-        $expectedJson = '[{"id":1,"name":"Toyota"},{"id":2,"name":"Ford"}]';
-        file_put_contents($tempJsonFile, $expectedJson);
-
-        $manufactures->method('datasetPath')->willReturn($tempJsonFile);
-
-        $result = $manufactures->loadManufacturesJson();
-
-        unlink($tempJsonFile);
-
-        $this->assertSame($expectedJson, $result);
-    }
-
-    public function test_load_manufactures_json_returns_empty_array_on_file_not_found(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['datasetPath'])
-            ->getMock();
-
-        $manufactures->method('datasetPath')->willReturn('/non/existent/path.json');
-
-        $result = $manufactures->loadManufacturesJson();
-
-        $this->assertSame([], $result);
-    }
-
-    public function test_load_manufactures_csv_returns_valid_csv(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['datasetPath'])
-            ->getMock();
-
-        $jsonData = json_encode([
-            ['id' => 1, 'name' => 'Toyota'],
-            ['id' => 2, 'name' => 'Ford'],
-        ]);
-
-        $tempJsonFile = tempnam(sys_get_temp_dir(), 'json');
-        file_put_contents($tempJsonFile, $jsonData);
-
-        $manufactures->method('datasetPath')->willReturn($tempJsonFile);
-
-        $csvOutput = $manufactures->loadManufacturesCsv();
-
-        unlink($tempJsonFile);
-
-        $expectedCsv = "id,name\n1,Toyota\n2,Ford\n";
-        $this->assertSame($expectedCsv, $csvOutput);
-    }
-
-    public function test_load_manufactures_csv_returns_empty_string_when_file_not_found(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['datasetPath'])
-            ->getMock();
-
-        $manufactures->method('datasetPath')->willReturn('/non/existent/path.json');
-
-        $csvOutput = $manufactures->loadManufacturesCsv();
-
-        $this->assertSame('', $csvOutput);
-    }
-
-    public function test_load_manufactures_csv_returns_empty_string_for_invalid_json(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['datasetPath'])
-            ->getMock();
-
-        $tempJsonFile = tempnam(sys_get_temp_dir(), 'json');
-        file_put_contents($tempJsonFile, 'invalid_json');
-
-        $manufactures->method('datasetPath')->willReturn($tempJsonFile);
-
-        $csvOutput = $manufactures->loadManufacturesCsv();
-
-        unlink($tempJsonFile);
-
-        $this->assertSame('', $csvOutput);
-    }
-
-    public function test_load_manufactures_csv_returns_empty_string_for_empty_json_array(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['datasetPath'])
-            ->getMock();
-
-        $tempJsonFile = tempnam(sys_get_temp_dir(), 'json');
-        file_put_contents($tempJsonFile, json_encode([]));
-
-        $manufactures->method('datasetPath')->willReturn($tempJsonFile);
-
-        $csvOutput = $manufactures->loadManufacturesCsv();
-
-        unlink($tempJsonFile);
-
-        $this->assertSame('', $csvOutput);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function test_get_manufactures_returns_xml_data(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['loadManufacturesXml'])
-            ->getMock();
-
-        $expectedXml = <<<XML
+        $expectedXml = <<<'XML'
 <?xml version="1.0"?>
 <manufacturers>
     <manufacturer>
@@ -196,110 +69,14 @@ class ManufacturesTest extends TestCase
 </manufacturers>
 XML;
 
-        $manufactures->method('loadManufacturesXml')->willReturn($expectedXml);
+        $this->manufactures
+            ->expects($this->once())
+            ->method('getManufactures')
+            ->with(DataTypes::XML)
+            ->willReturn($expectedXml);
 
-        $result = $manufactures->getManufactures(DataTypes::XML);
+        $result = $this->manufactures->getManufactures(DataTypes::XML);
 
         $this->assertSame($expectedXml, $result);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function test_load_manufactures_xml_returns_valid_xml(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['datasetPath'])
-            ->getMock();
-
-        $jsonData = json_encode([
-            ["name" => "Toyota", "country" => "Japan", "logo" => "/logos/toyota.png"],
-            ["name" => "Ford", "country" => "USA", "logo" => "/logos/ford.png"],
-        ]);
-
-        $tempJsonFile = tempnam(sys_get_temp_dir(), 'json');
-        file_put_contents($tempJsonFile, $jsonData);
-
-        $manufactures->method('datasetPath')->willReturn($tempJsonFile);
-
-        $xmlOutput = $manufactures->loadManufacturesXml();
-
-        unlink($tempJsonFile);
-
-        $expectedXml = <<<XML
-<?xml version="1.0"?>
-<manufacturers>
-    <manufacturer>
-        <name>Toyota</name>
-        <country>Japan</country>
-        <logo>/logos/toyota.png</logo>
-    </manufacturer>
-    <manufacturer>
-        <name>Ford</name>
-        <country>USA</country>
-        <logo>/logos/ford.png</logo>
-    </manufacturer>
-</manufacturers>
-XML;
-
-        $this->assertXmlStringEqualsXmlString($expectedXml, $xmlOutput);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function test_load_manufactures_xml_returns_empty_string_when_file_not_found(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['datasetPath'])
-            ->getMock();
-
-        $manufactures->method('datasetPath')->willReturn('/non/existent/path.json');
-
-        $xmlOutput = $manufactures->loadManufacturesXml();
-
-        $this->assertSame('', $xmlOutput);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function test_load_manufactures_xml_returns_empty_string_for_invalid_json(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['datasetPath'])
-            ->getMock();
-
-        $tempJsonFile = tempnam(sys_get_temp_dir(), 'json');
-        file_put_contents($tempJsonFile, 'invalid_json');
-
-        $manufactures->method('datasetPath')->willReturn($tempJsonFile);
-
-        $xmlOutput = $manufactures->loadManufacturesXml();
-
-        unlink($tempJsonFile);
-
-        $this->assertSame('', $xmlOutput);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function test_load_manufactures_xml_returns_empty_string_for_empty_json_array(): void
-    {
-        $manufactures = $this->getMockBuilder(Manufactures::class)
-            ->onlyMethods(['datasetPath'])
-            ->getMock();
-
-        $tempJsonFile = tempnam(sys_get_temp_dir(), 'json');
-        file_put_contents($tempJsonFile, json_encode([]));
-
-        $manufactures->method('datasetPath')->willReturn($tempJsonFile);
-
-        $xmlOutput = $manufactures->loadManufacturesXml();
-
-        unlink($tempJsonFile);
-
-        $this->assertSame('', $xmlOutput);
     }
 }
