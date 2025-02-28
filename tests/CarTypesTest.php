@@ -3,6 +3,7 @@
 namespace SherifSheremetaj\Cars\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use SherifSheremetaj\Cars\CarTypes;
 use SherifSheremetaj\Cars\Enums\DataTypes;
@@ -12,7 +13,7 @@ class CarTypesTest extends TestCase
     private CarTypes $carTypes;
 
     /**
-     * @throws \PHPUnit\Framework\MockObject\Exception
+     * @throws Exception
      */
     protected function setUp(): void
     {

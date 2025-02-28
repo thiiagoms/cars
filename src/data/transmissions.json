@@ -1,0 +1,26 @@
+[
+  {
+    "type": "Manual",
+    "description": "A transmission that requires the driver to manually shift gears using a clutch pedal and gear lever."
+  },
+  {
+    "type": "Automatic",
+    "description": "A transmission that automatically changes the vehicle's gears as the vehicle moves, without the need for manual shifting."
+  },
+  {
+    "type": "Semi-Automatic",
+    "description": "A transmission that combines elements of both manual and automatic transmissions, allowing for manual gear shifting without a clutch pedal."
+  },
+  {
+    "type": "Continuously Variable Transmission (CVT)",
+    "description": "A type of automatic transmission that uses a system of pulleys and belts to provide an infinite range of gear ratios, resulting in smoother acceleration."
+  },
+  {
+    "type": "Dual-Clutch Transmission (DCT)",
+    "description": "A type of semi-automatic transmission that uses two separate clutches for odd and even gears, offering faster gear shifts."
+  },
+  {
+    "type": "Automated Manual Transmission (AMT)",
+    "description": "A type of manual transmission with an automated clutch and shifting mechanism, eliminating the need for a manual clutch pedal."
+  }
+]
