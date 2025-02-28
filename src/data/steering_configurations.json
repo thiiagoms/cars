@@ -1,0 +1,10 @@
+[
+  {
+    "type": "Left-Hand Drive (LHD)",
+    "description": "A steering configuration where the steering wheel is positioned on the left side of the vehicle. This is the standard configuration in most countries, where driving occurs on the right side of the road."
+  },
+  {
+    "type": "Right-Hand Drive (RHD)",
+    "description": "A steering configuration where the steering wheel is positioned on the right side of the vehicle. This setup is commonly used in countries where driving occurs on the left side of the road, such as the UK, Japan, and Australia."
+  }
+]
