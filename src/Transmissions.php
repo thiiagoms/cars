@@ -1,20 +1,18 @@
 <?php
 
-declare(strict_types=1);
-
 namespace SherifSheremetaj\Cars;
 
 use SherifSheremetaj\Cars\Enums\DataTypes;
 use SherifSheremetaj\Cars\Factories\DataLoaderFactory;
 
-class Manufactures
+class Transmissions
 {
     private function datasetPath(): string
     {
-        return __DIR__.'/data/manufactures.json';
+        return __DIR__.'/data/transmissions.json';
     }
 
-    public function getManufactures(DataTypes $dataTypes): array|string
+    public function getTransmissions(DataTypes $dataTypes): array|string
     {
         $loader = DataLoaderFactory::create($dataTypes);
 

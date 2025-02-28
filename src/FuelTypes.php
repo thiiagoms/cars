@@ -11,7 +11,7 @@ class FuelTypes
 {
     private function datasetPath(): string
     {
-        return __DIR__ . '/data/fuel_types.json';
+        return __DIR__.'/data/fuel_types.json';
     }
 
     public function getFuelTypes(DataTypes $dataTypes): array|string
